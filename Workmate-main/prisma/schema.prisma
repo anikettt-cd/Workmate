@@ -1,0 +1,124 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+enum Theme {
+  LIGHT
+  DARK
+}
+
+enum JobCategory {
+  HOUSEKEEPING
+  PLUMBING
+  ELECTRICAL
+  CARPENTRY
+  PAINTING
+  GARDENING
+  MASONRY
+  COOKING
+  CHILDCARE
+  DRIVING
+  SECURITY
+  NURSING
+}
+
+enum JobStatus {
+  ACTIVE
+  CLOSED
+  COMPLETED
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      String
+  skills    String?
+  experience Int?
+  location  String?
+  imageUrl  String?
+  theme     Theme    @default(LIGHT)
+  profileCompletion Int @default(0)
+  createdAt DateTime @default(now())
+  applications Application[] @relation("LabourerApplications")
+  ratings    Rating[] @relation("LabourerRatings")
+  contractorRatings Rating[] @relation("ContractorRatings")
+  postedJobs Job[]    @relation("ContractorJobs")
+  sentMessages Message[] @relation("SentMessages")
+  receivedMessages Message[] @relation("ReceivedMessages")
+}
+
+model Job {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  skill       String
+  category    JobCategory
+  wage        Float
+  location    String
+  duration    String
+  status      JobStatus @default(ACTIVE)
+  tags        String?
+  contractor  User     @relation("ContractorJobs", fields: [contractorId], references: [id])
+  contractorId Int
+  applications Application[]
+  imageUrl     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  ratings     Rating[]
+}
+
+model Application {
+  id        Int    @id @default(autoincrement())
+  job       Job    @relation(fields: [jobId], references: [id])
+  jobId     Int
+  labourer  User   @relation("LabourerApplications", fields: [labourerId], references: [id])
+  labourerId Int
+  status    String // PENDING, ACCEPTED, REJECTED
+  message   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Rating {
+  id        Int    @id @default(autoincrement())
+  score     Int
+  review    String
+  job       Job    @relation(fields: [jobId], references: [id])
+  jobId     Int
+  labourer  User   @relation("LabourerRatings", fields: [labourerId], references: [id])
+  labourerId Int
+  contractor User? @relation("ContractorRatings", fields: [contractorId], references: [id])
+  contractorId Int?
+  createdAt DateTime @default(now())
+}
+
+model Message {
+  id        Int    @id @default(autoincrement())
+  senderId  Int
+  receiverId Int
+  jobId     Int?
+  content   String
+  isRead    Boolean @default(false)
+  createdAt DateTime @default(now())
+  sender    User   @relation("SentMessages", fields: [senderId], references: [id])
+  receiver  User   @relation("ReceivedMessages", fields: [receiverId], references: [id])
+}
+
+model AIRecommendation {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  recommendedJobId Int?
+  recommendedLabourerId Int?
+  score      Float
+  createdAt  DateTime @default(now())
+}
