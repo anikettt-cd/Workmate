@@ -1,220 +1,207 @@
-WorkMate - AI-Powered Hiring Platform
-A complete, fully working local version of the WorkMate hiring platform with AI-generated images, real-time chat, and intelligent job matching.
+# 🤝 WorkMate
 
-🚀 Features
-Authentication & User Management
-JWT-based authentication with bcrypt password hashing
-Role-based access control (Contractor/Job Seeker)
-AI-generated avatars for new users
-Secure login/signup system
-Contractor Dashboard
-Post jobs with detailed information (title, description, skills, wage, location, duration)
-AI-generated job images based on skills and requirements
-View and manage job applications
-Accept/reject job seeker applications
-Real-time notifications for new applications
-Job Seeker Dashboard
-Create and manage detailed profiles (skills, experience, location, languages)
-AI-generated profile pictures
-Browse and search for nearby jobs
-Apply for jobs with one-click
-Track application status and work history
-AI-Powered Features
-Smart job matching based on skills, experience, and location
-Job seeker recommendations for contractors
-Job recommendations for job seekers
-Intelligent scoring algorithm with detailed reasoning
-Real-time Communication
-Socket.io-powered chat system
-Instant notifications for applications and updates
-Real-time status updates
-Internationalization
-Multi-language support (English, Hindi, Marathi)
-Localized content and user interface
-next-intl integration
-🛠️ Tech Stack
-Frontend: Next.js 14 (App Router), TypeScript, TailwindCSS
-Backend: Node.js API routes, Prisma ORM
-Database: SQLite (local development)
-Authentication: JWT + bcrypt
-Real-time: Socket.io
-UI Components: shadcn/ui, Lucide React icons
-Internationalization: next-intl
-AI Images: DiceBear API placeholders (easily replaceable with real AI services)
-📋 Prerequisites
-Node.js 18+
-npm or yarn
-Git
-🚀 Quick Start
-1. Clone and Setup
-# Navigate to the project directory
+[![Next.js 14](https://shields.io)](https://nextjs.org)
+[![TypeScript](https://shields.io)](https://typescriptlang.org)
+[![Prisma](https://shields.io)](https://prisma.io)
+[![Socket.io](https://shields.io)](https://socket.io)
+[![License: MIT](https://shields.io)](https://opensource.org)
+
+> **Connecting talented job seekers with quality work opportunities through AI-powered matching and real-time communication.**
+
+WorkMate is a complete, fully operational local hiring platform packed with AI-generated visuals, real-time chat infrastructure, and an intelligent job-matching engine. 
+
+---
+
+## ⚡ Core Features
+
+### 🔐 Authentication & User Management
+* **JWT-Based Security** – Robust authentication utilizing secure `bcrypt` password hashing.
+* **Role-Based Routing** – Distinct system perspectives and dashboard control limits tailored for **Contractors** and **Job Seekers**.
+* **Instant Visual Identities** – Dynamic AI-generated avatars built natively during signup workflows.
+
+### 💼 Contractor Dashboard
+* **Smart Job Posting** – Create rich job ads detailing required skills, wages, location metrics, and duration requirements.
+* **Contextual Graphics** – Automated visual generation mapping job requirements directly to tailored cover illustrations.
+* **Applicant Pipelines** – View, evaluate, accept, or reject incoming job seeker applications seamlessly in real time.
+
+### 🧑‍💻 Job Seeker Dashboard
+* **Dynamic Profiles** – Build professional showcases featuring skill taxonomy, experiences, language selections, and locations.
+* **Geo-Proximate Browsing** – Scan, search, and map jobs located near the user's geographic target.
+* **Application Tracker** – One-click workflows to apply, monitor status shifts, and review continuous work histories.
+
+### 🤖 AI-Powered Intelligence
+* **Algorithmic Matchmaking** – Evaluates combinations of skill similarity, spatial distance, and candidate experience scores.
+* **Reasoned Decisions** – Explains matching outcomes transparently using clear, metric-driven rationale break-downs.
+
+### 💬 Real-Time Communications & i18n
+* **Socket.io Core** – Low-latency instant message routing alongside systemic push notifications.
+* **Deep Internationalization** – Native localized translation architecture targeting **English (`/en`)**, **Hindi (`/hi`)**, and **Marathi (`/mr`)** using `next-intl`.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technologies Used |
+| :--- | :--- |
+| **Frontend UI/UX** | Next.js 14 (App Router), TypeScript, TailwindCSS, shadcn/ui, Lucide Icons |
+| **Backend Core** | Node.js API Routes, Next.js Middleware |
+| **Real-Time Data** | Socket.io |
+| **Database & ORM**| SQLite, Prisma ORM |
+| **Authentication** | JSON Web Tokens (JWT) + `bcrypt` |
+| **Localization**   | `next-intl` |
+| **AI Graphics**    | DiceBear API placeholders *(swappable with production text-to-image engines)* |
+
+---
+
+## 🚀 Getting Started
+
+### 📋 Prerequisites
+* **Node.js** 18+ installed
+* **npm** or **yarn** configured
+* **Git** installed
+
+### 1. Clone & Core Setup
+Clone the repository, enter the workspace, and pull core dependencies:
+```bash
+git clone https://github.com # Replace with actual url if needed
 cd workmate
-
-# Install dependencies
 npm install
+```
 
-# Generate Prisma client
+### 2. Database Initialization
+Generate your typing blueprints and map schemas onto the local SQLite layer:
+```bash
 npm run db:generate
-
-# Push database schema
 npm run db:push
-2. Environment Setup
-Create a .env.local file in the root directory:
+```
 
+### 3. Environment Settings
+Create a `.env.local` configuration file directly inside your root workspace folder:
+```env
 JWT_SECRET=your-super-secret-jwt-key-change-in-production
 DATABASE_URL="file:./dev.db"
-3. Start Development Server
-# Start the development server with Socket.io
+```
+
+### 4. Launch Local Development
+Fire up the hybrid server orchestrating the Next.js routes along with active Socket.io communication loops:
+```bash
 npm run dev
-The application will be available at http://localhost:3000
+```
+Open **[http://localhost:3000](http://localhost:3000)** inside your browser to access the app.
 
-🗄️ Database Setup
-The application uses SQLite with Prisma ORM. The database will be automatically created when you run:
+---
 
-npm run db:push
-To view and manage your database:
+## 🗄️ Database Operations
 
+Management workflows utilize SQLite running inside a Prisma context. To open a clean, UI-driven data viewer for management, execute:
+```bash
 npm run db:studio
-🌐 Internationalization
-The platform supports multiple languages:
+```
 
-English (/en) - Default language
-Hindi (/hi) - हिंदी
-Marathi (/mr) - मराठी
-Language files are located in the messages/ directory and can be easily extended.
+If you alter `prisma/schema.prisma` during feature additions, execute a refresh pass using:
+```bash
+npm run db:generate
+npm run db:push
+```
 
-🔐 Authentication Flow
-Signup: Users can create accounts as either contractors or job seekers
-Login: JWT-based authentication with secure password verification
-Role-based Access: Different dashboards and permissions based on user role
-Session Management: Secure token storage and validation
-🤖 AI Features
-Job Matching Algorithm
-Skill Matching (40-50% weight): Compares job seeker skills with job requirements
-Experience Bonus (20-30% weight): Rewards experienced workers
-Location Matching (20-30% weight): Prioritizes nearby opportunities
-Contractor Rating (10% weight): Considers contractor reputation
-Image Generation
-User Avatars: Consistent avatars based on user ID and name
-Job Images: Skill-specific visual representations
-Dashboard Visuals: Context-aware illustrations and charts
-📱 API Endpoints
-Authentication
-POST /api/auth/signup - User registration
-POST /api/auth/login - User authentication
-Jobs
-GET /api/jobs - List all jobs with filtering
-POST /api/jobs - Create new job (contractors only)
-Applications
-GET /api/applications - Get applications for jobs/users
-POST /api/applications - Apply for a job (job seekers only)
-PATCH /api/applications - Update application status (contractors only)
-AI Recommendations
-GET /api/ai/recommendations - Get AI-powered suggestions
-POST /api/ai/recommendations - Generate new recommendations
-🔧 Development
-Project Structure
+---
+
+## 🤖 Deep Dive: AI Scoring Algorithm
+
+Matches are synthesized through weighted vector assessments prioritizing high-impact attributes:
+
+* **Skill Synthesis (40–50%)** – Strict semantic overlap computation comparing job prerequisites against seeker skillsets.
+* **Experience Modifier (20–30%)** – Tiered bonus multipliers calculated using professional background lifespans.
+* **Location Proximity (20–30%)** – Prioritization indices shifting local, nearby opportunities up the recommendations ranks.
+* **Reputation Integrity (10%)** – Modulates matching matrices based on historical contractor interaction rankings.
+
+---
+
+## 📱 Core API Endpoints
+
+### 🔐 Authentication
+* `POST /api/auth/signup` – Register new user accounts.
+* `POST /api/auth/login` – Validate credentials and hand off authorization JWT vectors.
+
+### 💼 Jobs Engine
+* `GET /api/jobs` – Fetch indexed opportunities against specific parameter filters.
+* `POST /api/jobs` – Publish a new role listing *(Contractor Auth Required)*.
+
+### 📑 Applications
+* `GET /api/applications` – Pull historical and pending interaction histories.
+* `POST /api/applications` – File a candidacy placement against open roles *(Job Seeker Auth Required)*.
+* `PATCH /api/applications` – Advance or reject ongoing applications *(Contractor Auth Required)*.
+
+### 🧠 Recommendations
+* `GET /api/ai/recommendations` – Read optimized matchmaking feeds.
+* `POST /api/ai/recommendations` – Refresh intelligence matrices and generate new scoring items.
+
+---
+
+## 🔧 Project Blueprint
+
+```text
 workmate/
 ├── src/
 │   ├── app/
-│   │   ├── [locale]/
-│   │   │   ├── dashboard/
-│   │   │   └── page.tsx
-│   │   └── api/
-│   │       ├── auth/
-│   │       ├── jobs/
-│   │       ├── applications/
-│   │       └── ai/
-│   └── i18n.ts
-├── lib/
+│   │   ├── [locale]/             # i18n Route handling
+│   │   │   ├── dashboard/       # Specialized role interfaces
+│   │   │   └── page.tsx         # Gateway landing
+│   │   └── api/                 # Endpoints (auth, jobs, applications, ai)
+│   └── i18n.ts                  # Localization setup
+├── lib/                         # Singleton connections & utility logic
 │   ├── prisma.ts
 │   ├── auth.ts
 │   ├── ai-recommendations.ts
 │   └── ai-images.ts
-├── messages/
+├── messages/                    # Multi-language JSON structural dictionaries
 │   ├── en.json
 │   ├── hi.json
 │   └── mr.json
-├── prisma/
+├── prisma/                      # Database structure blueprints
 │   └── schema.prisma
-├── server.js
+├── server.js                    # Core socket infrastructure runner
 └── package.json
-Adding New Features
-Database Models: Update prisma/schema.prisma
-API Routes: Create new files in src/app/api/
-Frontend Components: Add pages in src/app/[locale]/
-Translations: Update language files in messages/
-Database Migrations
-# After schema changes
-npm run db:generate
-npm run db:push
-🚀 Deployment
-Production Build
-# Build the application
+```
+
+---
+
+## 🚀 Production Deployment
+
+Compile optimized standalone static bundles and activate the target production server:
+```bash
 npm run build
-
-# Start production server
 npm start
-Environment Variables
-Set these in production:
+```
 
+Ensure the following environmental variables are loaded into your live production environment pipeline:
+```env
 NODE_ENV=production
 JWT_SECRET=your-production-jwt-secret
 DATABASE_URL=your-production-database-url
 PORT=3000
-🤝 Contributing
-Fork the repository
-Create a feature branch
-Make your changes
-Add tests if applicable
-Submit a pull request
-📄 License
-This project is licensed under the MIT License.
+```
 
-🆘 Support
-For support and questions:
+---
 
-Check the documentation
-Review existing issues
-Create a new issue with detailed information
-🔮 Future Enhancements
-Real AI Integration: Replace placeholder images with actual AI generation
-Advanced Analytics: Dashboard metrics and insights
-Mobile App: React Native mobile application
-Payment Integration: Secure payment processing
-Video Calls: Built-in communication features
-Machine Learning: Enhanced recommendation algorithms
-WorkMate - Connecting talented job seekers with quality work opportunities through AI-powered matching and real-time communication.
+## 🔮 Future Enhancements
+- [ ] **Native Generative AI** – Bridge placeholder loops into live midjourney/DALL-E pipelines.
+- [ ] **Business Intel Dashboards** – Rich graphical breakdown dashboards logging microeconomic marketplace data trends.
+- [ ] **Integrated Payment Pipes** – Secure, milestone-based Escrow payment distribution setups using Stripe.
+- [ ] **Native Mobile Port** – Expand reach using React Native interfaces mapping to these core API routes.
 
-About
-No description, website, or topics provided.
-Resources
- Readme
- Activity
-Stars
- 0 stars
-Watchers
- 0 watching
-Forks
- 0 forks
-Report repository
-Releases
-No releases published
-Packages
-No packages published
-Deployments
-7
- Production – workmate-i486
- Production – workmate
- Preview – workmate-i486
-+ 4 deployments
-Languages
-TypeScript
-96.9%
- 
-JavaScript
-2.0%
- 
-Other
-1.1%
-Footer
+---
+
+## 🤝 Contributing
+
+1. **Fork** the Repository.
+2. **Branch out** your additions (`git checkout -b feature/AmazingFeature`).
+3. **Commit** changes securely (`git commit -m 'Add some AmazingFeature'`).
+4. **Push** features upward (`git push origin feature/AmazingFeature`).
+5. **Open** a clean Pull Request targeting main lines.
+
+---
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
